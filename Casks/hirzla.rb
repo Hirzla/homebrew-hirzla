@@ -1,0 +1,39 @@
+cask "hirzla" do
+  version "1.1.0"
+  sha256 "9c01c374fe8ea936e203aa1ff72189cf7ba2dd1ab1f0ef79dc6e0f23bd49fbeb"
+
+  url "https://github.com/Phdhebde/Hirzla/releases/download/v#{version}/Hirzla_#{version}_aarch64.pkg"
+  name "Hirzla"
+  desc "Post-quantum password vault"
+  homepage "https://github.com/Phdhebde/Hirzla"
+
+  livecheck do
+    url :url
+    strategy :github_releases
+  end
+
+  depends_on arch: :arm64
+  depends_on macos: ">= :big_sur"
+
+  pkg "Hirzla_#{version}_aarch64.pkg"
+  binary "/Applications/Hirzla.app/Contents/MacOS/hirzla"
+
+  uninstall quit:    "app.hirzla.desktop",
+            pkgutil: [
+              "app.hirzla.desktop.app",
+              "app.hirzla.desktop.manifest",
+            ],
+            delete:  "/Library/Application Support/Hirzla"
+
+  # The vault itself is never removed, even by `brew uninstall --zap`: it lives in
+  # ~/Library/Application Support/Hirzla and is deleted by hand only.
+  zap trash: [
+    "~/Library/Caches/app.hirzla.desktop",
+    "~/Library/WebKit/app.hirzla.desktop",
+  ]
+
+  caveats <<~EOS
+    The installer package is not signed by Apple: the administrator password is asked.
+    Your vault (~/Library/Application Support/Hirzla) is kept on uninstall.
+  EOS
+end
