@@ -3,8 +3,8 @@
 Coffre-fort de mots de passe post-quantique : <https://github.com/Phdhebde/Hirzla>.
 
 ```sh
-brew tap phdhebde/hirzla
-brew trust phdhebde/hirzla
+brew tap hirzla/hirzla
+brew trust hirzla/hirzla
 brew install --cask hirzla
 ```
 
