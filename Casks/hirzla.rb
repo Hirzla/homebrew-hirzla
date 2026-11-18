@@ -7,9 +7,17 @@ cask "hirzla" do
   desc "Post-quantum password vault"
   homepage "https://github.com/Phdhebde/Hirzla"
 
+  # Releases are published as GitHub pre-releases: read their tags, drafts excluded.
   livecheck do
     url :url
-    strategy :github_releases
+    strategy :github_releases do |json, regex|
+      json.filter_map do |release|
+        next if release["draft"]
+
+        release["tag_name"]&.[](regex, 1)
+      end
+    end
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
   depends_on arch: :arm64
