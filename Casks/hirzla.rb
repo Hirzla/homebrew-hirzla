@@ -21,7 +21,7 @@ cask "hirzla" do
   end
 
   depends_on arch: :arm64
-  depends_on macos: :big_sur
+  depends_on :macos
 
   pkg "Hirzla_#{version}_aarch64.pkg"
   binary "/Applications/Hirzla.app/Contents/MacOS/hirzla"
