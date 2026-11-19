@@ -1,6 +1,6 @@
 cask "hirzla" do
-  version "1.1.1"
-  sha256 "f1b4a2a1c39afb40a0d818404d9ce46e156ce172d2fb3655e83c1fec6551dfeb"
+  version "1.1.2"
+  sha256 "9c91c395c4c242952f9c201046ffb578c0cd3c0615f53633c1592925384013d1"
 
   url "https://github.com/Phdhebde/Hirzla/releases/download/v#{version}/Hirzla_#{version}_aarch64.pkg"
   name "Hirzla"
